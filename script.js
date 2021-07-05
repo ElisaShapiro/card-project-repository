@@ -1,6 +1,6 @@
 const magicCardDealer = {
-    contact: "MagicCard@magiccard.com",
-    hours: "24/7 ",
+    contact: "MagicCard@mc.com",
+    hours: "Reach us by email 24/7",
     inventory: [
         {
             id: "164",
@@ -9,7 +9,7 @@ const magicCardDealer = {
             manaCost: 2, 
             flavorText: "I am neither their drover nor their leader. To these majestic beats, I am simply their herdmate and nothing more",
             image: "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=370738&type=card",
-            effect: "At the beginning of your end step, put a +1/+1 counter on target Beast create you control",
+            effect: "At the beginning of your end step, put a +1/+1 counter on target Beast create you control.",
             power: 2,
             toughness: 3
         },
@@ -18,9 +18,9 @@ const magicCardDealer = {
             name: "Alela, Artful Provocateur",
             color: "yellow",
             manaCost: 4,
-            flavorText: "Rankle/'s pranks are child/'s play. My games will topple kingdoms.",
+            flavorText: "Rankle's pranks are child's play. My games will topple kingdoms.",
             image: "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=476042&type=card",
-            effect: "Flying, deathtouch, lifelink. Other creatures you control with flying get+1/+0. Whenever you cast an artifact or enchantment spell, create a 1/1/ blue Faerie create token with flying",
+            effect: "Flying, deathtouch, lifelink. Other creatures you control with flying get+1/+0. Whenever you cast an artifact or enchantment spell, create a 1/1 blue Faerie create token with flying.",
             power: 2,
             toughness: 3
         },
@@ -37,7 +37,7 @@ const magicCardDealer = {
         },
         {
             id: "129",
-            name: "Chandra/'s Embercat",
+            name: "Chandra's Embercat",
             color: "orange",
             manaCost: 1, 
             flavorText: "Furballs? Try drealing with fireballs. - Chandra Nalaar",
@@ -59,7 +59,12 @@ const magicCardDealer = {
         },
     ]
 }
-function renderCard(card){
+function renderAside(cardObj){
+    document.querySelector('#contact').textContent = cardObj.contact
+    document.querySelector('#hours').textContent = cardObj.hours
+}
+
+function renderCard(magicCard){
     let li = document.createElement('li')
     let h4Name = document.createElement('h4')
     let h4Id = document.createElement('h4')
@@ -73,19 +78,19 @@ function renderCard(card){
 
 
     li.className = 'card'
-    img.src = card.img
-    h4Name.textContent= card.name
-    h4Id.textContent = card.h4Id
-    pManaCost.textContent = `Mana Cost: ${card.manaCost}`
-    pFlavorText.textContent = `Flavor Text: ${card.flavorText}`
-    pEffect.textContent = `Effect: ${card.effect}`
-    pPower.textContent = `Power: ${card.power}`
-    pToughness.textContent = `Toughness: ${card.toughness}`
-    pColor.textContent = `Color: ${card.color}`
+    img.src = magicCard.image
+    h4Name.textContent= magicCard.name
+    h4Id.textContent = magicCard.h4Id
+    pManaCost.textContent = `Mana Cost: ${magicCard.manaCost}`
+    pFlavorText.textContent = `Flavor Text: ${magicCard.flavorText}`
+    pEffect.textContent = `Effect: ${magicCard.effect}`
+    pPower.textContent = `Power: ${magicCard.power}`
+    pToughness.textContent = `Toughness: ${magicCard.toughness}`
+    pColor.textContent = `Color: ${magicCard.color}`
 
 
 
-    li.append(img, h4Name, h4Id, pManaCost, pFlavorText, pEffect,pPower, pInventory, pReviews)
+    li.append(img, h4Name, h4Id, pManaCost, pFlavorText, pEffect,pPower, pToughness, pColor)
     document.querySelector('#magic-card-list').append(li)
 
 
@@ -93,7 +98,8 @@ function renderCard(card){
 
 function initialRender(){
     console.log(magicCardDealer)
-    document.querySelector('#magic-card-list li').remove()
+    renderAside(magicCardDealer)
+    document.querySelector('#magic-card-list.cards li').remove()
     magicCardDealer.inventory.forEach(renderCard)
 }
 initialRender()
