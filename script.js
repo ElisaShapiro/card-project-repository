@@ -59,6 +59,21 @@ const magicCardDealer = {
         },
     ]
 }
+document.querySelector('#card-form').addEventListener('submit', (e)=> {
+    e.preventDefault()
+    let newCard = {
+        cardname: e.target.cardname.value,
+        color: e.target.color.value,
+        manacost: e.target.manacost.value,
+        flavortext: e.target.flavortext.value,
+        image: e.target.image.value,
+        effect: e.target.effect.value,
+        power: e.target.power.value,
+        toughness: e.target.toughness.value, 
+    }
+    renderCard(newCard)
+})
+
 function renderAside(cardObj){
     document.querySelector('#contact').textContent = cardObj.contact
     document.querySelector('#hours').textContent = cardObj.hours
@@ -75,7 +90,7 @@ function renderCard(magicCard){
     let pPower = document.createElement('p')
     let pToughness = document.createElement('p')
     let pColor = document.createElement('p')
-
+    // let btn = document.createElement('button')
 
     li.className = 'card'
     img.src = magicCard.image
@@ -87,8 +102,8 @@ function renderCard(magicCard){
     pPower.textContent = `Power: ${magicCard.power}`
     pToughness.textContent = `Toughness: ${magicCard.toughness}`
     pColor.textContent = `Color: ${magicCard.color}`
-
-
+    
+    
 
     li.append(img, h4Name, h4Id, pManaCost, pFlavorText, pEffect,pPower, pToughness, pColor)
     document.querySelector('#magic-card-list').append(li)
@@ -103,3 +118,23 @@ function initialRender(){
     magicCardDealer.inventory.forEach(renderCard)
 }
 initialRender()
+
+Array.from(document.querySelectorAll('.card')).forEach(element => element.addEventListener('click', (e) => {
+    e.preventDefault()
+    let edit = document.createElement("button") 
+    edit.textContent = "Edit Card"
+    element.append(edit)
+    let deleteBtn = document.createElement("button")
+    deleteBtn.textContent = "Delete Card"
+    element.append(deleteBtn)
+    edit.addEventListener("click", () => {
+        e.preventDefault()
+        console.log("I want to edit")
+    })
+    deleteBtn.addEventListener("click", () => {
+        e.preventDefault()
+        element.remove()
+    })
+    }
+))
+

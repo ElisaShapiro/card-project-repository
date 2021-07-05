@@ -67,3 +67,38 @@ main {
     justify-content: space-between;
     padding: 0.5 rem;
 }
+
+/*forms*/
+#card-form {
+    margin: 0 auto;
+    max-width: 400px;
+    background-color: whitesmoke;
+    color: black;
+    padding: 1rem;
+    box-shadow: 2px 2px 7px -1px rgba(0, 0, 0, 0.75);
+}
+#card-form input,
+#card-form textarea {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+#book-form input[type="submit"] {
+    margin: 1em 0 0 0;
+    width: auto;
+}
+
+/* buttons*/
+button {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.75em 1.5em;
+    background-color: brown;
+    color:rgba(0, 0, 0, 0.75);
+    transition: opacity 0.2s ease;
+}
+button:hover {
+    opacity: 0.8;
+}
