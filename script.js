@@ -59,18 +59,19 @@ const magicCardDealer = {
         },
     ]
 }
-document.querySelector('#card-form').addEventListener('submit', (e)=> {
+document.querySelector('#add-button').addEventListener('click', (e)=> {
     e.preventDefault()
-    let newCard = {
-        cardname: e.target.cardname.value,
-        color: e.target.color.value,
-        manacost: e.target.manacost.value,
-        flavortext: e.target.flavortext.value,
-        image: e.target.image.value,
-        effect: e.target.effect.value,
-        power: e.target.power.value,
-        toughness: e.target.toughness.value, 
+        let newCard = {
+        name: document.querySelector('#card-form #cardname').value,
+        color: document.querySelector('#card-form #color').value,
+        manaCost: document.querySelector('#card-form #manacost').value,
+        flavorText: document.querySelector('#card-form #flavortext').value,
+        image: document.querySelector('#card-form #image').value,
+        effect: document.querySelector('#card-form #effect').value,
+        power: document.querySelector('#card-form #power').value,
+        toughness: document.querySelector('#card-form #toughness').value,
     }
+    console.log(newCard)
     renderCard(newCard)
 })
 
@@ -128,8 +129,16 @@ Array.from(document.querySelectorAll('.card')).forEach(element => element.addEve
     deleteBtn.textContent = "Delete Card"
     element.append(deleteBtn)
     edit.addEventListener("click", () => {
-        e.preventDefault()
-        console.log("I want to edit")
+        // console.log(element.children);
+        document.querySelector('#card-form #cardname').value = element.children[1].innerText;
+        document.querySelector('#card-form #color').value = element.children[8].innerText.split('Color: ')[1];
+        document.querySelector('#card-form #manacost').value = element.children[3].innerText.split('Mana Cost: ')[1];
+        document.querySelector('#card-form #flavortext').value = element.children[4].innerText.split('Flavor Text: ')[1];
+        document.querySelector('#card-form #image').value = element.children[0].src;
+        document.querySelector('#card-form #effect').value = element.children[5].innerText.split('Effect: ')[1];
+        document.querySelector('#card-form #power').value = element.children[6].innerText.split('Power: ')[1];
+        document.querySelector('#card-form #toughness').value = element.children[7].innerText.split('Toughness: ')[1];
+        element.remove()
     })
     deleteBtn.addEventListener("click", () => {
         e.preventDefault()
